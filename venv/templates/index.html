@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol Dropdown</title>
+</head>
+
+<body>
+    <h1>Stock Data Visualizer</h1>
+    <form action="{{url_for('charts',)}}" method="post">
+        <label for="symbol">Select a symbol:</label>
+        <select id="symbol" name="symbol">
+            {% for symbol in symbols %}
+                <option value="{{ symbol }}">{{ symbol }}</option>
+            {% endfor %}
+        </select>
+    
+
+        <label for="chartType">Select a chart type:</label>
+        <select id="chartType" name="chartType">
+            {% for chartType in chartTypes %}
+                <option value="{{ chartType }}">{{ chartType }}</option>
+            {% endfor %}
+        </select>
+   
+        <label for="timeSer">Select a time series:</label>
+        <select id="timeSer" name="timeSer">
+            {% for timeSer in timeSers %}
+                <option value="{{ timeSer }}">{{ timeSer }}</option>
+            {% endfor %}
+        </select>
+    
+
+        <label for="sDate">Select a start date:</label>
+            <input type="date" id="sDate" name="sDate">
+
+        <br>
+        <br>
+
+        <label for="eDate">Select an end date:</label>
+            <input type="date" id="eDate" name="eDate">
+
+        <br>
+        <br>
+        <input type="submit" value="Generate Chart">
+    </form>
+    <div id="chart">
+        <embed type="image/svg+xml" src= {{ chart|safe }} />
+    </div>
+</body>
+</html>
